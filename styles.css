@@ -1,0 +1,15 @@
+:root {
+	--very-dark-blue: #2f4858;
+	--dark-blue: #16697a;
+	--medium-blue: #489fb5;
+	--light-blue: #82c0cc;
+	--light-grey: #ede7e3;
+	--orange: #e06c1e;
+	--yellow: #f6ae2d;
+}
+
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

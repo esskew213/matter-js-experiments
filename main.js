@@ -5,6 +5,8 @@ const height = 800;
 
 const engine = Engine.create();
 
+//decrease for slower motion
+engine.timing.timeScale = 0.7;
 // unpack the world object that is created when engine is created
 const { world } = engine;
 const render = Render.create({
@@ -35,25 +37,14 @@ World.add(world, [ ground, ceiling, leftWall, rightWall ]);
 
 // make some shapes, randomising starting position
 const squareLength = 40;
-const radius = 30;
 for (let i = 0; i < 10; i++) {
-	if (Math.random() > 0.5) {
-		const shape = Bodies.rectangle(
-			Math.random() * (width - wallThickness - squareLength / 2) + wallThickness + squareLength / 2,
-			Math.random() * (height - wallThickness - squareLength / 2) + wallThickness + squareLength / 2,
-			squareLength,
-			squareLength
-		);
-		World.add(world, shape);
-	} else {
-		const shape = Bodies.circle(
-			Math.random() * (width - wallThickness - radius) + wallThickness + radius,
-			Math.random() * (height - wallThickness - radius) + wallThickness + radius,
-			30,
-			{
-				render: { fillStyle: 'red' }
-			}
-		);
-		World.add(world, shape);
-	}
+	const tile = Bodies.rectangle(
+		Math.random() * (width - wallThickness - squareLength / 2) + wallThickness + squareLength / 2,
+		Math.random() * (height - wallThickness - squareLength / 2) + wallThickness + squareLength / 2,
+		squareLength,
+		squareLength
+	);
+	tile.restitution = 1;
+	tile.frictionAir = 0.01;
+	World.add(world, tile);
 }
